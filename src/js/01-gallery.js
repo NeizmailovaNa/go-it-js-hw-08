@@ -6,7 +6,6 @@ import SimpleLightbox from 'simplelightbox';
 // Дополнительный импорт стилей
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-console.log(galleryItems)
 const galleryContainer = document.querySelector ('.gallery');
 const galleryCards = createGalleryItem (galleryItems);
 galleryContainer.insertAdjacentHTML(`beforeend`, galleryCards)
@@ -26,8 +25,10 @@ function createGalleryItem (galleryItems) {
     })
     .join("");
 };
+console.log(galleryItems);
 
-const lightbox = new SimpleLightbox('.gallery__item', {
-  captionsData: 'alt',
-  captionDelay: 250,
+new SimpleLightbox('.gallery a', { 
+    captionsData: "alt",
+    captionDelay: 250
 });
+
