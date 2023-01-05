@@ -6,22 +6,28 @@ import SimpleLightbox from 'simplelightbox';
 // Дополнительный импорт стилей
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-console.log(galleryItems);
-const galleryEl = document.querySelector('.gallery');
-const galleryItemMarkup = creatGalleryMarkup(galleryItems);
-galleryEl.insertAdjacentHTML('beforeend', galleryItemMarkup);
+const galleryContainer = document.querySelector ('.gallery');
+const galleryCards = createGalleryItem (galleryItems);
+galleryContainer.insertAdjacentHTML(`beforeend`, galleryCards)
+galleryContainer.addEventListener(`click`, getRightClick)
 
-function creatGalleryMarkup(galleryItems) {
-  return galleryItems
-    .map(({ preview, original, description }) => {
-      return `<li>
-         <a class="gallery__item" href="${original}">
-  <img class="gallery__image" src="${preview}" alt="${description}" />
-</a>
-       </li>`;
+function createGalleryItem (galleryItems) {
+    return galleryItems.map(({preview, original, description}) => {
+        return `
+        <div class="gallery__item">
+            <a class="gallery__link" href="${original}">
+                <img
+                    class="gallery__image"
+                    src="${preview}"
+                    data-source="${original}"
+                    alt="${description}"
+                />
+            </a>
+        </div>`;
     })
-    .join('');
-}
+    .join("");
+};
+
 const lightbox = new SimpleLightbox('.gallery__item', {
   captionsData: 'alt',
   captionDelay: 250,
