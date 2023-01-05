@@ -6,10 +6,10 @@ import SimpleLightbox from 'simplelightbox';
 // Дополнительный импорт стилей
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+console.log(galleryItems)
 const galleryContainer = document.querySelector ('.gallery');
 const galleryCards = createGalleryItem (galleryItems);
 galleryContainer.insertAdjacentHTML(`beforeend`, galleryCards)
-galleryContainer.addEventListener(`click`, getRightClick)
 
 function createGalleryItem (galleryItems) {
     return galleryItems.map(({preview, original, description}) => {
@@ -19,7 +19,6 @@ function createGalleryItem (galleryItems) {
                 <img
                     class="gallery__image"
                     src="${preview}"
-                    data-source="${original}"
                     alt="${description}"
                 />
             </a>
